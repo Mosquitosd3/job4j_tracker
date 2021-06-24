@@ -29,10 +29,36 @@ public class Tracker {
     }
 
     public Item findById(int id) {
-        Item rsl = null;
-        for (Item item : items) {
-            if (item.getId() == id) {
-                rsl = item;
+        int index = indexOf(id);
+        return index != -1 ? items.get(index) : null;
+    }
+
+    public boolean replace(int id, Item item) {
+        Boolean rsl = false;
+        int index = indexOf(id);
+        if (index != -1) {
+            item.setId(id);
+            items.set(index, item);
+            rsl = true;
+        }
+        return rsl;
+    }
+
+    public boolean delete(int id) {
+        boolean rsl = false;
+        int index = indexOf(id);
+        if (index != -1) {
+            items.remove(index);
+            rsl = true;
+        }
+        return rsl;
+    }
+
+    private int indexOf(int id) {
+        int rsl = -1;
+        for (int index = 0; index < items.size(); index++) {
+            if (items.get(index).getId() == id) {
+                rsl = index;
                 break;
             }
         }
