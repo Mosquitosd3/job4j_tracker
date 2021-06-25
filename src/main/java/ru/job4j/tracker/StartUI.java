@@ -1,11 +1,18 @@
 package ru.job4j.tracker;
 
 import ru.job4j.tracker.interfaces.Input;
+import ru.job4j.tracker.interfaces.Output;
 import ru.job4j.tracker.interfaces.UserAction;
 
 import java.util.List;
 
 public class StartUI {
+
+    private final Output out;
+
+    public StartUI(Output out) {
+        this.out = out;
+    }
 
     public void init(Input input, Tracker tracker, UserAction[] actions) {
         boolean run = true;
@@ -33,17 +40,18 @@ public class StartUI {
     }
 
     public static void main(String[] args) {
+        Output output = new ConsoleOutput();
         Input input = new ConsoleInput();
         Tracker tracker = new Tracker();
         UserAction[] actions = {
-                new CreateItemAction(),
-                new ShowAction(),
-                new EditAction(),
-                new DeleteAction(),
-                new FindByIdAction(),
-                new FindByNameAction(),
-                new ExitAction()
+                new CreateItemAction(output),
+                new ShowAction(output),
+                new EditAction(output),
+                new DeleteAction(output),
+                new FindByIdAction(output),
+                new FindByNameAction(output),
+                new ExitAction(output)
         };
-        new StartUI().init(input, tracker, actions);
+        new StartUI(output).init(input, tracker, actions);
     }
 }
