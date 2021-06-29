@@ -2,6 +2,7 @@ package ru.job4j.tracker;
 
 import ru.job4j.tracker.interfaces.Input;
 import ru.job4j.tracker.interfaces.Output;
+import ru.job4j.tracker.interfaces.Store;
 import ru.job4j.tracker.interfaces.UserAction;
 
 public class EditAction implements UserAction {
@@ -17,7 +18,7 @@ public class EditAction implements UserAction {
     }
 
     @Override
-    public boolean execute(Input input, Tracker tracker) {
+    public boolean execute(Input input, Store tracker) {
         out.println(name());
         int id = input.askInt("Enter id item");
         String name = input.askStr("Enter new name");
