@@ -22,9 +22,9 @@ public class DeleteAction implements UserAction  {
         out.println(name());
         int id = input.askInt("Enter id");
         if (tracker.delete(id)) {
-            System.out.println("delete successfully");
+            out.println("delete successfully");
         } else {
-            System.out.println("Delete failed");
+            out.println("Delete failed");
         }
         return true;
     }

@@ -1,9 +1,11 @@
 package ru.job4j.tracker;
 
+import ru.job4j.tracker.interfaces.Store;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Tracker {
+public class Tracker implements Store {
     private final List<Item> items = new ArrayList<>();
     private int ids = 1;
     private int size = 0;
@@ -12,6 +14,16 @@ public class Tracker {
         item.setId(ids++);
         items.add(item);
         return item;
+    }
+
+    @Override
+    public void init() {
+
+    }
+
+    @Override
+    public void close() throws Exception {
+
     }
 
     public List<Item> findAll() {
